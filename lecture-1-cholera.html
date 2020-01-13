@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Scale, Scale, Scale</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jon Zelner" />
+    <meta name="date" content="2020-01-13" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Scale, Scale, Scale
+### Jon Zelner
+### EPID 684: Theory and Applications of Spatial Epidemiology <br/> University of Michigan School of Public Health
+### 2020-01-13
+
+---
+
+
+
+
+# How did we get from here...
+
+![](images/snow_cholera_map.jpg)
+
+
+---
+
+background-image: url('images/broad_street_pump.jpg')
+background-position: 50% 50%
+class: inverse
+
+# To here?
+
+---
+
+# And here?
+
+![scale 40%](images/cholera_elimination.png)
+
+---
+
+# Agenda
+
+1. **.large[Some Cholera background.]**
+
+--
+
+2. **.large[John Snow's historical tour of Cholera.]**
+
+--
+
+3. **.large[Using spatial data to make a present-day policy argument.]**
+
+
+---
+
+background-image: url('images/v_cholerae.jpg')
+class: bottom inverse
+
+
+# Some background on *V. Cholerae*
+
+---
+
+## Cholera transmitted by the fecal-oral pathway
+
+.center[
+
+![](images/water_contamination_schematic.jpg)
+
+]
+
+---
+
+## Nested in a complex social-ecological system.
+.center[
+![](images/garchitorena_human_natural.png)
+Image from  Garchitorena, Sokolow, Roche, Ngonghala, Jocque, Lund, Barry, Mordecai, Daily, Jones, Andrews, Bendavid, Luby, LaBeaud, Seetah, Guégan, Bonds, and De Leo (2017)
+]
+
+---
+
+## Rice water stool characteristic of Cholera infection
+
+--
+
+![](images/rice_water_stool.png)
+
+
+---
+
+## Cholera remains an important, but not leading, cause of global morbidity and mortality
+
+&lt;div class="figure"&gt;
+&lt;img src="images/global_cholera_ali_2015.png" alt="Ali, Nelson, Lopez, and Sack (2015) estimate 2.5M annual cases and 95K deaths." width="2051" height="400" /&gt;
+&lt;p class="caption"&gt;Ali, Nelson, Lopez, and Sack (2015) estimate 2.5M annual cases and 95K deaths.&lt;/p&gt;
+&lt;/div&gt;
+
+---
+
+## Cholera often appears in the aftermath of disasters
+
+.center[
+![:scale 60%](images/haiti_cholera.png)
+]
+
+---
+class: inverse, middle, center
+
+# John Snow and the "Ghost map"
+
+
+---
+
+# Science in Action
+
+.center[
+
+![:scale 50%](images/jon_snow.jpg)
+
+]
+
+&gt; "[John Snow] sits alone in his cluttered flat, frogs croaking around him, illuminated only by candlelight. After a few minutes tinkering...he fastens the mouthpiece over his face and releases the gas. Within seconds, his head hits the desk. Then, minutes later, he wakes, consults his watch through blurred vision. He reaches for his pen, and starts recording the data." (From Johnson (2007b))
+
+---
+
+# Science in Action
+
+.center[
+
+![:scale 30%](images/john_snow.jpg)
+
+]
+
+
+&gt; "[John Snow] sits alone in his cluttered flat, frogs croaking around him, illuminated only by candlelight. After a few minutes tinkering...he fastens the mouthpiece over his face and releases the gas. Within seconds, his head hits the desk. Then, minutes later, he wakes, consults his watch through blurred vision. He reaches for his pen, and starts recording the data." 
+
+---
+class: inverse
+
+## The foul quality of London's water was well-known
+
+![:scale 80%](images/monster_soup_thames.jpg)
+
+*An 1828 cartoon courtesy of The British Museum*
+---
+
+
+## Building the case for the water supply 
+
+.pull-left[
+- Snow noticed that different neighborhoods were likely to have differential exposure to .alert[wastewater] based on their geographic position in the city and water supplier.
+
+
+- Consulted tables from the city of London and found that the per-capita Cholera death rate .alert[south] of the Thames was 8/1000, approx 3x more than the city as a whole.
+
+]
+
+.pull-right[
+
+![](images/cholera_1832_deaths.jpg)
+
+*Cholera deaths by district of London in 1832 outbreak*
+
+]
+
+---
+
+class: middle
+
+## Consistency .alert[across spatial scales] is the centerpiece of Snow's argument
+
+.pull-left[
+&gt; "Whether you looked at the evidence on the scale of an urban courtyard or on the scale of entire city neighborhoods, the same pattern repeated itself: the cholera seemed to segment itself around .alert[shared water supplies]." (Johnson, p.74)
+]
+
+.pull-right[
+
+![](images/broad_street_pump.jpg)
+]
+
+---
+
+# Snow's Grand Experiment
+
+- Take advantage of changes in infrastructure to compare neighborhoods served with contaminated and clean water.
+
+--
+
+- Focused on understanding the causes of .alert[endemic] cholera in London
+
+--
+
+- Example of a natural experiment.
+
+--
+
+## What is a natural experiment?
+
+- Exploits some kind of random variation in exposure to make causal inferences where they would otherwise not be possible. 
+
+--
+
+- What are some other potential examples?
+
+---
+
+## Changes in London water service provided an opportunity 
+
+- Around 1850, parliament mandated that all water companies move their intake beyond the outflow of the Thames by 1855.
+
+--
+
+.pull-left[
+
+- In south London there were two major water suppliers: Southwark &amp; Vauxhall (S&amp;V) and Lambeth.
+
+- Lambeth moved the intake up in .1852, but S&amp;V waited until .red[1855].
+ 
+]
+
+.pull-right[
+
+![](images/snow_water_map.jpg)
+]
+
+
+---
+
+## Snow took advantage of spatial differences in .alert[exposure]
+.pull-left[
+
+![](images/snow_water_map.jpg)
+
+]
+
+.pull-right[
+- Snow divided data into sub-districts of South London organized by water supplier.
+
+- 12 were served by only S&amp;V, 3 by Lambeth alone
+
+- 1/100 people died of Cholera in .alert[S&amp;V only] districts, but none among the &gt; 14K Lambeth districts
+]
+---
+
+## A wrinkle in the Grand Experiment...
+.middle[
+
+.pull-left[
+
+- But: 16 sub-districts were served by both suppliers
+
+- Within these districts, water service was overlapping at a fine scale.
+
+- Population data were not available at a fine enough scale to figure out who was at risk and where.
+
+]
+
+.pull-right[
+
+![](images/water_supply_map.png)
+
+Image from Koch and Denike (2006)
+
+]
+
+]
+
+---
+
+## If Snow didn't end the outbreak by getting the handle removed, was his work important?
+--
+.center[
+![:scale 40%](images/deaths_dispensary.jpg)
+
+*1856 cartoon illustrating an infected water pump as "death's dispensary".*
+]
+---
+class: inverse
+
+# Lessons of 1854 outbreak are about *scale* from the bottom to the top.
+
+&lt;iframe width="1000" height="450" src="https://www.youtube.com/embed/0fKBhvDjuy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+
+class: inverse, middle, center
+
+# Using spatial data to make policy and practice arguments 
+
+---
+
+## Discussion Questions
+
+1. What .alert[scales] of surveillance and intervention are  important for achieving global Cholera elimination?
+
+--
+
+2. Which of the proposed interventions have a spatial component?
+
+--
+
+3. What is the rationale behind targeting hotspot areas?
+
+--
+
+4. What challenges or risks might be associated with the hotspot-focused approach?
+
+---
+
+## .red[Hotspots] are at the center of the global roadmap
+
+.center[
+
+![](images/cholera_roadmap_hotspot.png)
+
+*But what is a hotspot, anyway?*
+
+]
+---
+
+# Next Time
+
+---
+
+# References
+
+[1] M. Ali, A. R. Nelson, A. L. Lopez, et al. "Updated Global Burden of
+Cholera in Endemic Countries". En. In: _PLOS Neglected Tropical
+Diseases_ 9.6 (Jun. 2015), p. e0003832. ISSN: 1935-2735. DOI:
+10.1371/journal.pntd.0003832.
+
+[2] A. Garchitorena, S. H. Sokolow, B. Roche, et al. "Disease Ecology,
+Health and the Environment: A Framework to Account for Ecological and
+Socio-Economic Drivers in the Control of Neglected Tropical Diseases".
+En. In: _Phil. Trans. R. Soc. B_ 372.1722 (Jun. 2017), p. 20160128.
+ISSN: 0962-8436, 1471-2970. DOI: 10.1098/rstb.2016.0128.
+
+[3] S. Johnson. _The Ghost Map: The Story of London's Most Terrifying
+Epidemic-and How It Changed Science, Cities, and the Modern World_.
+Reprint edition. London: Riverhead Books, Oct. 2007. ISBN:
+978-1-59448-269-4.
+
+[4] T. Koch and K. Denike. "Rethinking John Snow's South London Study:
+A Bayesian Evaluation and Recalculation". Eng. In: _Soc Sci Med_ 63.1
+(Jul. 2006), pp. 271-283. ISSN: 0277-9536. DOI:
+10.1016/j.socscimed.2005.12.006.
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
