@@ -66,6 +66,12 @@ class: inverse
 
 ---
 
+# Scale...on a grand scale.
+___
+
+<iframe width="1000" height="450" src="https://www.youtube.com/embed/0fKBhvDjuy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+---
+
 background-image: url('images/v_cholerae.jpg')
 class: bottom inverse
 
@@ -84,24 +90,26 @@ class: bottom inverse
 
 ---
 
-## Nested in a complex social-ecological system.
-.center[
+# These environmental systems are part of a complex social-ecological web.
+
 ![](images/garchitorena_human_natural.png)
-Image from  `r Citet(bib, "garchitorena2017")`
+.center[Image from  `r Citet(bib, "garchitorena2017")`]
+
+---
+
+# Rice water stool characteristic of Cholera infection
+
+.center[
+
+![:scale 70%](images/rice_water_stool.png)
+
+What makes this so deadly?
+
 ]
 
 ---
 
-## Rice water stool characteristic of Cholera infection
-
---
-
-![:scale 60%](images/rice_water_stool.png)
-
-
----
-
-## Cholera remains an important cause of global morbidity and mortality
+# Cholera remains an important cause of global morbidity and mortality
 
 ```{r echo=FALSE,  fig.cap=paste0(Citet(bib, "ali2015"), " estimate 2.5M annual cases and 95K deaths."), message=FALSE, warning=FALSE}
 knitr::include_graphics("images/global_cholera_ali_2015.png")
@@ -109,7 +117,19 @@ knitr::include_graphics("images/global_cholera_ali_2015.png")
 
 ---
 
-## Cholera often appears in the aftermath of disasters
+# We are currently in the .alert[seventh] global cholera pandemic
+
+.center[
+
+![:scale 80%](images/hu_seventh_cholera_pandemic.png)
+
+Map of dissemination of current pandemic strain. Figure from `r Cite(bib, "hu2016")`
+
+]
+
+---
+
+# Cholera often appears in the aftermath of disasters
 
 .center[
 ![:scale 60%](images/haiti_cholera.png)
@@ -120,6 +140,26 @@ class: inverse, middle, center
 
 # John Snow and the "Ghost map"
 
+
+---
+
+# How was the case made for the role of water in the 1854 London Cholera outbreak?
+
+Reflecting on "Sick City":
+
+1. What were the relevant .alert[spatial scales] of analysis for making the argument?
+
+--
+
+2. What made .alert[miasma] theory so hard to dislodge, even in the face of strong evidene?
+
+--
+
+3. Did snow work alone? Who else helped develop his theory?
+
+--
+
+4. What are some more-recent analogues of miasma theory?
 
 ---
 
@@ -158,35 +198,28 @@ class: inverse, middle, center
 *An 1828 cartoon courtesy of The British Museum*
 
 ]
+
+
 ---
 
+# Broad Street outbreak was a small part of the .alert[Third Cholera Pandemic]
 
-## Building the case for the water supply 
+Preceded by Second Global Cholera pandemic:
 
-.pull-left[
-- Snow noticed that different neighborhoods were likely to have differential exposure to .alert[wastewater] based on their geographic position in the city and water supplier.
+.center[
 
+![:scale 70%](images/second_cholera_pandemic_map.png)
 
-- Consulted tables from the city of London and found that the per-capita Cholera death rate .alert[south] of the Thames was 8/1000, approx 3x more than the city as a whole.
-
+Map of cholera dissemination from `r Cite(bib, "daude2008")`
 ]
-
-.pull-right[
-
-![](images/cholera_1832_deaths.jpg)
-
-*Cholera deaths by district of London in 1832 outbreak*
-
-]
-
 ---
 
 class: middle
 
-## Consistency .alert[across spatial scales] is the centerpiece of Snow's argument
+# Consistency .alert[across spatial scales] is the centerpiece of Snow's argument
 
 .pull-left[
-> "Whether you looked at the evidence on the scale of an urban courtyard or on the scale of entire city neighborhoods, the same pattern repeated itself: the cholera seemed to segment itself around .alert[shared water supplies]." (Johnson, p.74)
+ "Whether you looked at the evidence on the scale of an urban courtyard or on the scale of entire city neighborhoods, the same pattern repeated itself: the cholera seemed to segment itself around .alert[shared water supplies]." (Johnson, p.74)
 ]
 
 .pull-right[
@@ -194,33 +227,9 @@ class: middle
 ![](images/broad_street_pump.jpg)
 ]
 
----
 
-# Snow's Grand Experiment
 
-- Take advantage of changes in infrastructure to compare neighborhoods served with contaminated and clean water.
-
---
-
-- Focused on understanding the causes of .alert[endemic] cholera in London
-
---
-
-- Example of a natural experiment.
-
---
-
-## What is a natural experiment?
-
-- Exploits some kind of random variation in exposure to make causal inferences where they would otherwise not be possible. 
-
---
-
-- What are some other potential examples?
-
----
-
-## Changes in London water service provided an opportunity 
+# Legal change provided an opportunity 
 
 - Around 1850, parliament mandated that all water companies move their intake beyond the outflow of the Thames by 1855.
 
@@ -230,7 +239,7 @@ class: middle
 
 - In south London there were two major water suppliers: Southwark & Vauxhall (S&V) and Lambeth.
 
-- Lambeth moved the intake up in .1852, but S&V waited until .red[1855].
+- Lambeth moved the intake up in 1852, but S&V waited until .red[1855].
  
 ]
 
@@ -242,44 +251,61 @@ class: middle
 
 ---
 
-## Snow took advantage of spatial differences in .alert[exposure]
-.pull-left[
+# Snow took advantage of these spatial differences in .alert[exposure] to conduct a natural experiment
 
-![](images/snow_water_map.jpg)
+- Snow death register data into sub-districts of South London organized by water supplier.
 
-]
-
-.pull-right[
-- Snow divided data into sub-districts of South London organized by water supplier.
+--
 
 - 12 were served by only S&V, 3 by Lambeth alone
 
+--
+
 - 1/100 people died of Cholera in .alert[S&V only] districts, but none among the > 14K Lambeth districts
-]
+
+-- 
+
+- Concluded that it had to be due to contamination of water from sewage, closing the fecal-oral loop.
+
 ---
 
-## A wrinkle in the Grand Experiment...
-.middle[
+# What is a natural experiment?
+
+- Exploits some kind of random variation in exposure to make causal inferences where they would otherwise not be possible. 
+
+--
+
+- What are some other potential examples?
+
+-- 
+
+- How could this go wrong?
+
+---
+
+#  A wrinkle in the Grand Experiment
 
 .pull-left[
 
-- But: 16 sub-districts were served by both suppliers
+.middle[
+- 16 sub-districts were served by both suppliers
 
 - Within these districts, water service was overlapping at a fine scale.
 
 - Population data were not granular enough to figure out who was at risk and where.
 
+- Should thisimpact our evaluation of his results?
+]
 ]
 
 .pull-right[
 
 ![](images/water_supply_map.png)
 
-Image from `r Citet(bib,"koch2006")`
+ Image from `r Cite(bib,"koch2006")`
 
 ]
 
-]
 
 ---
 
@@ -291,23 +317,22 @@ Image from `r Citet(bib,"koch2006")`
 *1856 cartoon illustrating an infected water pump as "death's dispensary".*
 ]
 ---
+
+
 class: inverse
 
-# Lessons of Cholera in London outbreak are about *scale* from the bottom to the top.
+# How is spatial data used to make policy and practice arguments?
 
-<iframe width="1000" height="450" src="https://www.youtube.com/embed/0fKBhvDjuy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+.center[
+![:scale 110%](images/snow_cholera_map.jpg)
+]
 
----
-
-class: inverse, middle, center
-
-# Using spatial data to make policy and practice arguments 
 
 ---
 
-## Discussion Questions
+# Using spatial data to make global Cholera policy.
 
-1. What .alert[scales] of surveillance and intervention are  important for achieving global Cholera elimination?
+1. What .alert[spatial scales] of surveillance and intervention are important for achieving global Cholera elimination?
 
 --
 
@@ -315,16 +340,13 @@ class: inverse, middle, center
 
 --
 
-3. What is the rationale behind targeting hotspot areas?
-
---
-
-4. What challenges or risks might be associated with the hotspot-focused approach?
+3. What challenges or risks might be associated with the hotspot-focused approach?
 
 ---
 
-## .red[Hotspots] are at the center of the global roadmap
+# .red[Hotspots] are at the center of the global roadmap
 
+.middle[
 .center[
 
 ![](images/cholera_roadmap_hotspot.png)
@@ -332,15 +354,35 @@ class: inverse, middle, center
 *But what is a hotspot, anyway?*
 
 ]
+]
 ---
 
 # Next Time
+
+## Readings
+
+A glossary of concepts/terms for spatial epidemiology:
+
+[`r Citet(bib, "rezaeian2007")`](https://drive.google.com/file/d/1hg7VZgkCbOCoVnViIYPUtJOelRkXDfOp/view?usp=sharing)
+
+A broad overview of .alert[health and medical geography]:
+
+[`r Citet(bib, "emch2017")`](https://drive.google.com/file/d/1-2wFyqJbD7v7zu_AlTO2_xQeK5vdD1hc/view?usp=sharing)
+
 
 ---
 
 # References
 
 ```{r, results="asis"}
-PrintBibliography(bib)
+PrintBibliography(bib, start = 1, end = 4)
+```
+
+---
+
+# References
+
+```{r, results="asis"}
+PrintBibliography(bib, start = 5)
 ```
 
