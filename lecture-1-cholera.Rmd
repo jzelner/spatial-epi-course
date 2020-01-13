@@ -5,7 +5,7 @@ institute: "EPID 684: Theory and Applications of Spatial Epidemiology  <br/> Uni
 date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
-    css: ["default", "default-fonts", "css/extra.css"]
+    css: ["libs/michigan.css", "middlebury-fonts", "css/extra.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -45,8 +45,9 @@ class: inverse
 ---
 
 # And here?
-
-![scale 40%](images/cholera_elimination.png)
+.center[
+![:scale 80%](images/cholera_elimination.png)
+]
 
 ---
 
@@ -95,12 +96,12 @@ Image from  `r Citet(bib, "garchitorena2017")`
 
 --
 
-![](images/rice_water_stool.png)
+![:scale 60%](images/rice_water_stool.png)
 
 
 ---
 
-## Cholera remains an important, but not leading, cause of global morbidity and mortality
+## Cholera remains an important cause of global morbidity and mortality
 
 ```{r echo=FALSE,  fig.cap=paste0(Citet(bib, "ali2015"), " estimate 2.5M annual cases and 95K deaths."), message=FALSE, warning=FALSE}
 knitr::include_graphics("images/global_cholera_ali_2015.png")
@@ -146,13 +147,17 @@ class: inverse, middle, center
 > "[John Snow] sits alone in his cluttered flat, frogs croaking around him, illuminated only by candlelight. After a few minutes tinkering...he fastens the mouthpiece over his face and releases the gas. Within seconds, his head hits the desk. Then, minutes later, he wakes, consults his watch through blurred vision. He reaches for his pen, and starts recording the data." 
 
 ---
-class: inverse
+
 
 ## The foul quality of London's water was well-known
+
+.center[
 
 ![:scale 80%](images/monster_soup_thames.jpg)
 
 *An 1828 cartoon courtesy of The British Museum*
+
+]
 ---
 
 
@@ -262,7 +267,7 @@ class: middle
 
 - Within these districts, water service was overlapping at a fine scale.
 
-- Population data were not available at a fine enough scale to figure out who was at risk and where.
+- Population data were not granular enough to figure out who was at risk and where.
 
 ]
 
@@ -288,7 +293,7 @@ Image from `r Citet(bib,"koch2006")`
 ---
 class: inverse
 
-# Lessons of 1854 outbreak are about *scale* from the bottom to the top.
+# Lessons of Cholera in London outbreak are about *scale* from the bottom to the top.
 
 <iframe width="1000" height="450" src="https://www.youtube.com/embed/0fKBhvDjuy0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
