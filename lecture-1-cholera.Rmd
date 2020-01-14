@@ -133,7 +133,7 @@ Map of dissemination of current pandemic strain. Figure from `r Cite(bib, "hu201
 # Cholera often appears in the aftermath of disasters
 
 .center[
-![:scale 60%](images/haiti_cholera.png)
+![:scale 50%](images/haiti_cholera.png)
 ]
 
 ---
@@ -315,30 +315,36 @@ class: inverse
 
 # Using spatial data to make global Cholera policy.
 
+.pull-left[
 1. What .alert[spatial scales] of surveillance and intervention are important for achieving global Cholera elimination?
 
---
+2. What is the .alert[mechanistic] role of space? Social?
 
-2. Which of the proposed interventions have a spatial component?
+3. Which of the proposed interventions have a spatial component?
 
---
+4. What challenges or risks might be associated with their recommended approach?
+]
 
-3. What challenges or risks might be associated with the hotspot-focused approach?
-
+.pull-right[
+![:scale 60%](images/cholera_roadmap.jpg)
+]
 ---
 
-# .red[Hotspots] are at the center of the global roadmap
+# A spatial approach to TB in New York
 
+.pull-left[
+1. What is the overarching goal of the TB control program in NYC?
 
-.center[
-  .middle[
-![](images/cholera_roadmap_hotspot.png)
+2. What are the relevant spatial scales employed in this report?
 
-What does intervening in a hotspot get us?
+3. Is .alert[spatial relatedness], e.g. through contagion, the primary concern, or is it something else?
 
+4. How do they use this information to show how they are/are not meeting their goals?
 ]
-]
 
+.pull-right[
+  .middle[![](images/nyc_tb_map.png)]
+]
 ---
 
 # Next Time
