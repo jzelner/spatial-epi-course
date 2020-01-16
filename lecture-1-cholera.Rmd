@@ -85,7 +85,7 @@ class: bottom inverse
 
 .center[
 
-![](images/water_contamination_schematic.jpg)
+![](images/fecal_oral_example.png)
 
 ]
 
@@ -212,6 +212,15 @@ Preceded by Second Global Cholera pandemic:
 ![:scale 70%](images/second_cholera_pandemic_map.png)
 
 Map of cholera dissemination from `r Cite(bib, "daude2008")`
+]
+
+---
+
+# How does this compare to the current one?
+
+.center[
+
+![](images/global_cholera_ali_2015.png)
 ]
 ---
 

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>What are the tools of modern spatial epidemiology?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jon Zelner" />
+    <meta name="date" content="2020-01-16" />
+    <link href="libs/remark-css/middlebury-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/michigan.css" type="text/css" />
+    <link rel="stylesheet" href="css/extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# What are the tools of modern spatial epidemiology?
+## EPID 684: Theory and Applications of Spatial Epidemiology
+### Jon Zelner
+### University of Michigan School of Public Health
+### 2020-01-16
+
+---
+
+
+
+
+class: inverse middle center
+
+# What does it mean to *do* spatial analysis?
+---
+
+# Agenda
+
+- Review .alert[semester agenda] responses
+
+--
+
+- Emch and Rezaien readings activity
+
+--
+
+- Some orienting .alert[notation]
+
+--
+
+- A motivating .alert[example]
+
+---
+
+class: middle center inverse
+
+# Semester Agenda themes
+
+---
+
+# Topic areas
+
+.pull-left[
+
+- Physical environment (e.g. .green[greenspace]) and health
+
+- Global and domestic health inequality
+
+- Social/ecological/nutrition relationships.
+]
+
+.pull-right[
+
+- Spatial/contextual effects on cognitive outcomes for older adults.
+
+- Uveitis (👁 inflammation) outcomes.
+
+- Water, sanitation, hygiene: 🚱 to 🚰.
+
+]
+
+---
+
+# Conceptual areas
+
+- How do you identify a good/answerable spatial question?
+
+- How to conduct a spatial analysis?
+
+- What types of .alert[data] are used in spatial analysis?
+
+- How do you pick the right level of scale for analysis?
+
+- What do you do when there is a .alert[mismatch] between your question and the available data?
+
+- Cross-cultural modeling in a healthcare context.
+
+---
+
+# Methodological goals
+
+- Relationships between spatial and temporal correlation.
+
+- Relate system .alert[dynamics] to spatial patterns.
+
+- Spatial .alert[exposure] assessment via "local regression" (e.g. smoothing) approaches.
+
+- Use spatial data to prioritize/target medical intervention.
+
+- Find and assess significance of disease .alert[clusters].
+
+- Spatial data presentation/visualization.
+
+---
+
+class: inverse center middle
+
+# Tools of the trade
+
+---
+
+# What .alert[tools] and .alert[problems] do Rezaien et al. identify?
+
+--
+
+1. Geographic Information System
+
+--
+
+2. GPS
+
+--
+
+3. Smoothing
+
+--
+
+4. Spatial autocorrelation/dependence
+
+--
+
+5. Spatial regression
+
+---
+
+# Why would we want to .alert[smooth] spatial data?
+
+--
+.center[
+
+![](images/smoothed_suicide.png)
+
+Smoothed areal suicide data from (Fontanella, Saman, Campo, Hiance-Steelesmith, Bridge, Sweeney, and Root, 2018).
+
+]
+
+---
+
+# What is most relevant to your project?
+
+Reflecting on the Emch and Rezaien readings:
+
+Alone:
+
+1. Identify the .alert[concepts] in the Emch &amp; Root chapter most relevant to your personal/academic/project interests.
+
+--
+
+In pairs:
+
+2. If you had to characterize what you'd like to do for your final project, what would you say?
+--
+
+3. Identify the .alert[tools] in Rezaien that would help you best address these.
+
+--
+
+4. What do you think is .alert[realistic] to try to do in the span of a semester?
+
+---
+
+class: inverse center middle
+
+# Notes on *notation*
+
+---
+class: center middle
+
+# Why should we care about notation, anyway?
+
+---
+
+# Bookkeeping
+
+We will adopt the hierarchical modeling notation used in (Gelman, 2006).
+
+### Indices let us keep track of what needs tracking:
+
+- `\(i\)` indexes *individuals*.
+
+--
+
+- `\(j\)` indexes *spatial units*.
+
+--
+
+- `\(t\)` indexes *time*.
+
+--
+
+### Counts let us know how much of everything we're dealing with:
+
+- `\(J\)` is the number of spatial locations.
+
+--
+
+- `\(n_j\)` is the number of individuals in location `\(j\)`
+
+
+---
+
+# Put them together!
+
+.center[
+![](images/peas_and_carrots.jpg)
+*Counts* and *indices* go together like peas and 🥕 !
+]
+
+---
+
+# Indices let us access what we need
+
+- `\(y_{ij}\)` is outcome for individual `\(i\)` in unit `\(j\)`.
+  - Where: `\(i\in\{1,\ldots,n_j\}\)` ( `\(\in\)` means "in")
+  
+  - And: `\(j\in\{1,\ldots,J\}\)`
+  
+--
+
+- `\(x_{ij}\)` is a .alert[covariate] associated with individual `\(ij\)`.
+
+--
+
+- `\(u_j\)` is a covariate for .alert[location] `\(j\)`
+
+---
+
+# But what about data?
+
+- If our data, `\(y\)`, have a Normal distribution
+
+- With mean `\(\mu\)` = 0,
+
+- And variance `\(\sigma^2\)`,
+
+- We can write: `\(y\sim\mathcal{N}(0,\sigma^2)\)`
+
+---
+
+# But I thought we were going to talk about .alert[models]?
+
+.pull-left[
+
+- If `\(y_{ij}\)` has a Normal distribution,
+
+- We can write `\(y_{ij}\sim\mathcal{N}(\mu_{ij},\sigma_{y}^2)\)`
+
+- Where `\(\mu_{ij}\)` is a function of covariates, eg:
+
+- `\(\mu_{ij}=\alpha_j+\beta x_{ij}\)`
+
+- And `\(\alpha_{j}\sim\mathcal{N}(\mu_{j},\sigma_{\alpha}^{2})\)`
+
+]
+
+.pull-right[
+
+&lt;div class="figure"&gt;
+&lt;img src="lecture-2-tools_files/figure-html/unnamed-chunk-1-1.png" alt="Normally distributed outcome" height="400" /&gt;
+&lt;p class="caption"&gt;Normally distributed outcome&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+
+# Next Time
+
+When the 🏎️meets the road..some actual multi-level analysis!
+
+[1] J. Merlo, B. Chaix, M. Yang, et al. "A Brief Conceptual Tutorial of
+Multilevel Analysis in Social Epidemiology: Linking the Statistical
+Concept of Clustering to the Idea of Contextual Phenomenon". En. In:
+_Journal of Epidemiology &amp; Community Health_ 59.6 (Jun. 2005), pp.
+443-449. ISSN: 0143-005X, 1470-2738. DOI: 10.1136/jech.2004.023473.
+
+And:
+
+[1] A. V. D. Roux, C. I. Kiefe, D. R. Jacobs, et al. "Area
+Characteristics and Individual-Level Socioeconomic Position Indicators
+in Three Population-Based Epidemiologic Studies". En. In: _Annals of
+Epidemiology_ 11.6 (Aug. 2001), pp. 395-405. ISSN: 1047-2797. DOI:
+10.1016/S1047-2797(01)00221-6.
+
+--
+
+- Come to class prepared for a hands-on activity.
+
+---
+
+# References
+
+[1] C. A. Fontanella, D. M. Saman, J. V. Campo, et al. "Mapping Suicide
+Mortality in Ohio: A Spatial Epidemiological Analysis of Suicide
+Clusters and Area Level Correlates". En. In: _Preventive Medicine_ 106
+(Jan. 2018), pp. 177-184. ISSN: 00917435. DOI:
+10.1016/j.ypmed.2017.10.033.
+
+[2] A. Gelman. "Multilevel (Hierarchical) Modeling: What It Can and
+Cannot Do". En. In: _Technometrics_ 48.3 (Aug. 2006), pp. 432-435.
+ISSN: 0040-1706, 1537-2723. DOI: 10.1198/004017005000000661.
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
