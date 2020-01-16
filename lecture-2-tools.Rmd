@@ -158,7 +158,29 @@ Smoothed areal suicide data from `r Cite(bib, "fontanella2018")`.
 
 ---
 
-# What is most relevant to your project?
+# Big ideas from Emch & Root
+
+1. What is the long and complex history of ecology in epdiemiology all about?
+
+--
+
+2. Is all ecological research necessarily subject to the dreaded .red[ecological fallacy]? Why or why not?
+
+--
+
+3. "If it can't be mapped, it's not geography.": What do we think?
+
+---
+
+# Health in Context
+
+
+##"States of health or disease are the expressions of the success or failure experienced by the organism in its efforts to respond adaptively to environmental challenges." (From `r Cite(bib, "dubos1969")`)
+
+---
+
+
+# What aspects of the readings is most relevant to your interests/project?
 
 Reflecting on the Emch and Rezaien readings:
 
