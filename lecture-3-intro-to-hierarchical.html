@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Getting a handle on spatial variation with models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jon Zelner" />
+    <meta name="date" content="2020-01-20" />
+    <link href="libs/remark-css/middlebury-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/michigan.css" type="text/css" />
+    <link rel="stylesheet" href="css/extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Getting a handle on spatial variation with models
+## EPID 684: Theory and Applications of Spatial Epidemiology
+### Jon Zelner
+### University of Michigan School of Public Health
+### 2020-01-20
+
+---
+
+
+
+
+
+class: inverse middle center
+
+# Where the rubber meets the road...
+---
+
+# Agenda
+
+- Some notes on .alert[notation]
+
+--
+
+- Brief review of Merlo et al.
+
+--
+
+- Hands-on intraclass correlation activity.
+
+---
+
+class: inverse center middle
+
+# Notes on *notation*
+
+---
+class: center middle
+
+# Why should we care about notation, anyway?
+
+---
+
+# Bookkeeping
+
+We will adopt the hierarchical modeling notation used in (Gelman, 2006).
+
+### Indices let us keep track of what needs tracking:
+
+- `\(i\)` indexes *individuals*.
+
+--
+
+- `\(j\)` indexes *spatial units*.
+
+--
+
+- `\(t\)` indexes *time*.
+
+--
+
+### Counts let us know how much of everything we're dealing with:
+
+- `\(J\)` is the number of spatial locations.
+
+--
+
+- `\(n_j\)` is the number of individuals in location `\(j\)`
+
+
+---
+
+# Put them together!
+
+.center[
+![](images/peas_and_carrots.jpg)
+*Counts* and *indices* go together like peas and 🥕 !
+]
+
+---
+
+# Indices let us access what we need
+
+- `\(y_{ij}\)` is outcome for individual `\(i\)` in unit `\(j\)`.
+  - Where: `\(i\in\{1,\ldots,n_j\}\)` ( `\(\in\)` means "in")
+  
+  - And: `\(j\in\{1,\ldots,J\}\)`
+  
+--
+
+- `\(x_{ij}\)` is a .alert[covariate] associated with individual `\(ij\)`.
+
+--
+
+- `\(u_j\)` is a covariate for .alert[location] `\(j\)`
+
+---
+
+# But what about data?
+
+- If our data, `\(y\)`, have a Normal distribution
+
+- With mean `\(\mu\)` = 0,
+
+- And variance `\(\sigma^2\)`,
+
+- We can write: `\(y\sim\mathcal{N}(0,\sigma^2)\)`
+
+---
+
+# I thought we were going to talk about .alert[models]?
+
+.pull-left[
+
+- If `\(y_{ij}\)` has a Normal distribution,
+
+- We can write `\(y_{ij}\sim\mathcal{N}(\mu_{ij},\sigma_{y}^2)\)`
+
+- Where `\(\mu_{ij}\)` is a function of covariates, eg:
+
+- `\(\mu_{ij}=\alpha_j+{\beta}x_{ij}\)`
+
+- And `\(\alpha_{j}\sim\mathcal{N}(\mu_{j},\sigma_{\alpha}^{2})\)`
+
+]
+
+.pull-right[
+
+&lt;div class="figure"&gt;
+&lt;img src="lecture-3-intro-to-hierarchical_files/figure-html/unnamed-chunk-1-1.png" alt="Normally distributed outcome" height="400" /&gt;
+&lt;p class="caption"&gt;Normally distributed outcome&lt;/p&gt;
+&lt;/div&gt;
+]
+
+---
+
+class: center middle inverse
+
+# Understanding intraclass correlation using simulated data.
+
+---
+
+# What do we do when our data show meaningful individual-level and spatial variation?
+
+.center[
+
+![:scale 70%](images/merlo_variance_partition.png)
+
+Neighborhood and individual-level variation in simulated SBP.
+
+]
+
+---
+
+
+# Hypothetical data provide a clean example
+
+Merlo et al simulate  and analyze systolic blood pressure (SBP) data for:
+
+- 25,000 people 
+
+- Living in 39 neighborhoods of a hypothetical city
+
+--
+
+- They assume that variation arises from *individual* and *neighborhood* level variation.
+
+--
+
+- Deviations from *population* mean are assumed to be *normally distributed* for both.
+
+---
+
+# The simulated data by neighborhood
+
+.center[
+
+![:scale 60%](images/merlo_sim_data.png)
+
+Simulated Systolic Blood Pressure Data. Solid dots = neighborhood sample means; open circles = individual observations. (Figure from (Merlo, Chaix, Yang, Lynch, and Rastam, 2005))
+
+]
+
+---
+
+# Merlo et al. analyze these data with an 'empty' model 
+
+- What makes this .alert[empty]?
+
+--
+
+- Multilevel regression model is typically focused on explaining variance in an outcome, `\(Y\)`, using inputs, `\(X\)`.
+
+--
+
+- This analysis takes a step back and focuses on estimating how much of the *total variation* in `\(Y\)` is occurring at the .alert[neighborhood] vs .alert[individual] level. 
+
+---
+
+# The empty model defined
+
+`$$SBP_{I}=SBP_{C}+E_{N-c}+E_{I-c}$$`
+
+- `\(SBP_{I}\)` = SBP for individual I
+
+- `\(SBP_{C}\)` = City mean SBP
+
+- `\(E_{N-c}\)` = difference between neighborhood mean and city mean SBP
+
+- `\(E_{I-c}\)` = difference between individual and neighborhood mean. 
+
+
+---
+
+# What is variance?
+
+--
+
+- .alert[Square] of the average deviation from the mean
+
+--
+
+- So, if standard deviation, `\(\sigma\)` = 10, Variance, `\(\sigma^2\)` = 100.
+
+--
+
+- Merlo et al. denote `\(\sigma^2\)` as V, but we're going to dispense with that.
+
+---
+
+# Some better notation for the empty model
+
+`$$y_{i} =\alpha+\epsilon_{j}+\epsilon_{i}$$`
+
+- `\(y_{i}\)` = SBP for individual `\(i\)`
+
+--
+
+- `\(\alpha\)` = City mean SBP
+
+--
+
+- `\(\epsilon_{j}\)` = difference between neighborhood `\(j\)` mean and city mean SBP
+
+--
+
+- `\(\epsilon_{i}\)` = difference between individual and neighborhood mean. 
+
+---
+
+# Partitioning the total variance
+
+Merlo et al. show that we can estimate the .alert[total variance] as:
+
+`$$\sigma^2_{Total}=\sigma^2_N+\sigma^2_I$$`
+
+- `\(\sigma^2_N\)` = .alert[Between-neighborhood] variability in outcomes.
+
+- `\(\sigma^2_I\)` = Individual level variability in outcomes (.alert[within-neighborhood] variation)
+
+--
+
+- We can do this because the variance of any two independent RVs is just the sum of their variances. 
+
+---
+
+# Why would we want to do this?
+
+--
+
+- Figure out what levels accounts for meaningful variation in the data.
+
+
+- Measure this using intraclass-correlation (ICC):
+
+`$$ICC=\frac{\sigma_{N}^2}{\sigma_{N}^2+\sigma_{I}^2}$$`
+
+---
+
+class: inverse middle
+
+# Now let's give it a try...
+
+
+
+```r
+n &lt;- floor(25000/39)
+neighborhood &lt;- rnorm(39, 130.2, sqrt(36.2))
+all_vals &lt;- c()
+for (i in 1:39) {
+  all_vals &lt;- c(all_vals, neighborhood[i] + rnorm(n, 0, sqrt(433.4)))
+}
+```
+
+.center[
+  Re-generating the simulated data in *R*
+  ]
+
+
+---
+
+# Start your engines
+
+This link will take you to a preloaded *RStudio Cloud* workspace where we can continue:
+
+https://rstudio.cloud/project/843431
+
+
+---
+
+# Next Time
+
+We will discuss the real-world application of the ICC approach:
+
+[1] A. V. D. Roux, C. I. Kiefe, D. R. Jacobs, et al. "Area
+Characteristics and Individual-Level Socioeconomic Position Indicators
+in Three Population-Based Epidemiologic Studies". En. In: _Annals of
+Epidemiology_ 11.6 (Aug. 2001), pp. 395-405. ISSN: 1047-2797. DOI:
+10.1016/S1047-2797(01)00221-6.
+
+--
+
+And look at a more in-depth treatment of *neighborhood effects* on health.
+---
+
+# References
+
+[1] A. Gelman. "Multilevel (Hierarchical) Modeling: What It Can and
+Cannot Do". En. In: _Technometrics_ 48.3 (Aug. 2006), pp. 432-435.
+ISSN: 0040-1706, 1537-2723. DOI: 10.1198/004017005000000661.
+
+[2] J. Merlo, B. Chaix, M. Yang, et al. "A Brief Conceptual Tutorial of
+Multilevel Analysis in Social Epidemiology: Linking the Statistical
+Concept of Clustering to the Idea of Contextual Phenomenon". En. In:
+_Journal of Epidemiology &amp; Community Health_ 59.6 (Jun. 2005), pp.
+443-449. ISSN: 0143-005X, 1470-2738. DOI: 10.1136/jech.2004.023473.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

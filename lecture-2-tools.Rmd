@@ -174,11 +174,10 @@ Smoothed areal suicide data from `r Cite(bib, "fontanella2018")`.
 
 # Health in Context
 
+## "States of health or disease are the expressions of the success or failure experienced by the organism in its efforts to respond adaptively to environmental challenges." (From `r Cite(bib, "dubos1969")`)
 
-##"States of health or disease are the expressions of the success or failure experienced by the organism in its efforts to respond adaptively to environmental challenges." (From `r Cite(bib, "dubos1969")`)
 
 ---
-
 
 # What aspects of the readings is most relevant to your interests/project?
 
@@ -203,112 +202,7 @@ In pairs:
 
 ---
 
-class: inverse center middle
 
-# Notes on *notation*
-
----
-class: center middle
-
-# Why should we care about notation, anyway?
-
----
-
-# Bookkeeping
-
-We will adopt the hierarchical modeling notation used in `r Cite(bib, "gelman2006")`.
-
-### Indices let us keep track of what needs tracking:
-
-- $i$ indexes *individuals*.
-
---
-
-- $j$ indexes *spatial units*.
-
---
-
-- $t$ indexes *time*.
-
---
-
-### Counts let us know how much of everything we're dealing with:
-
-- $J$ is the number of spatial locations.
-
---
-
-- $n_j$ is the number of individuals in location $j$
-
-
----
-
-# Put them together!
-
-.center[
-![](images/peas_and_carrots.jpg)
-*Counts* and *indices* go together like peas and 🥕 !
-]
-
----
-
-# Indices let us access what we need
-
-- $y_{ij}$ is outcome for individual $i$ in unit $j$.
-  - Where: $i\in\{1,\ldots,n_j\}$ ( $\in$ means "in")
-  
-  - And: $j\in\{1,\ldots,J\}$
-  
---
-
-- $x_{ij}$ is a .alert[covariate] associated with individual $ij$.
-
---
-
-- $u_j$ is a covariate for .alert[location] $j$
-
----
-
-# But what about data?
-
-- If our data, $y$, have a Normal distribution
-
-- With mean $\mu$ = 0,
-
-- And variance $\sigma^2$,
-
-- We can write: $y\sim\mathcal{N}(0,\sigma^2)$
-
----
-
-# But I thought we were going to talk about .alert[models]?
-
-.pull-left[
-
-- If $y_{ij}$ has a Normal distribution,
-
-- We can write $y_{ij}\sim\mathcal{N}(\mu_{ij},\sigma_{y}^2)$
-
-- Where $\mu_{ij}$ is a function of covariates, eg:
-
-- $\mu_{ij}=\alpha_j+\beta x_{ij}$
-
-- And $\alpha_{j}\sim\mathcal{N}(\mu_{j},\sigma_{\alpha}^{2})$
-
-]
-
-.pull-right[
-
-```{r, fig.cap="Normally distributed outcome"}
-require(ggplot2)
-x <- rnorm(1000)
-df <- data.frame(x=x, y=1:100)
-g <- ggplot(df, aes(x = x)) + geom_histogram() + theme_bw()
-plot(g)
-```
-]
-
----
 
 # Next Time
 
