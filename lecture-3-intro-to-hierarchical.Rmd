@@ -333,19 +333,24 @@ https://rstudio.cloud/project/843431
 
 # Next Time
 
-We will discuss the real-world application of the ICC approach:
+We will discuss the real-world application of the ICC approach in `r Cite(bib, "roux2001")`
 
-```{r, results="asis"}
-bib["roux2001"]
-```
+And start thinking more about the relationship between neighborhoods, segregation, and health:
 
---
+- Read [`r Cite(bib, "williams2016a")`](https://drive.google.com/open?id=1-6rLUv7oq_tM6AcUzlDNgkqvO3-43Qws&authuser=jzelner@umich.edu&usp=drive_fs)
 
-And look at a more in-depth treatment of *neighborhood effects* on health.
+- And [`r Cite(bib, "kershaw2017")`](https://drive.google.com/open?id=1-4ajpYgbe7jsiKwQiH485hyUywvRGcP2&authuser=jzelner@umich.edu&usp=drive_fs)
+
 ---
 
 # References
 
 ```{r, results="asis"}
 PrintBibliography(bib, start = 1, end = 4)
+```
+---
+# References
+
+```{r, results="asis"}
+PrintBibliography(bib, start = 5)
 ```
