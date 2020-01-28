@@ -1,0 +1,102 @@
+---
+author: "Jon Zelner"
+title: "Maps!"
+subtitle:  "Visit to Evergreen 🌲!"
+institute: "University of Michigan School of Public Health"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["libs/michigan.css", "middlebury-fonts", "css/extra.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+---
+
+```{r setup, include=FALSE}
+require(RefManageR)
+require(knitr)
+options(htmltools.dir.version = FALSE,
+        servr.daemon = TRUE)
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	out.height = 400
+)
+bib <- ReadBib("~/repos/bibtex-library/jz_library.bib")
+
+```
+
+# Maps can tell a story
+
+.center[
+![](images/family_circus_map.jpg)
+]
+
+---
+
+# Maps can show how places are connected
+
+[Global air travel ✈️](http://www.arcgis.com/apps/OnePane/storytelling_basic/index.html?appid=605204b677894f0da7a1acd83b9ee308&_ga=1.47316964.235754488.1426102017)
+
+---
+
+class: center
+
+# Maps can show how many people live in a place
+
+
+![:scale 60%](images/michigan_lights.png)
+
+[Michigan lights at night](https://earth.google.com/web/@43.4712584,-84.36319945,558.95166674a,989657.41508156d,35y,0h,0t,0r/data=CisSKRIgMGY3ZTJkYzdlOGExMTFlNjk5MGQ2ZjgxOGQ2OWE2ZTciBWVhcnRo)
+
+---
+
+# Global Tuberculosis
+
+.center[
+
+![:scale 70%](images/who_global_tb_incidence_2017.png)
+]
+---
+
+# A whole city
+
+.center[
+![:scale 40%](images/all_mdr_hotspot.png)
+]
+
+---
+
+# Or just a single neighborhood
+
+![](images/snow_cholera_map.jpg)
+
+---
+
+# They can show things in the environment
+
+.center[
+![](images/son_predictions.png)
+]
+
+---
+
+# They can show things in the environment
+
+.center[
+![](images/zanobetti_cities.png)
+]
+
+---
+# Michigan Radon
+
+.center[
+![](images/michigan_radon.png)
+]
+---
+
+
