@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Segregation and non-communicable disease</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jon Zelner" />
+    <meta name="date" content="2020-01-28" />
+    <link href="libs/remark-css/middlebury-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="libs/michigan.css" type="text/css" />
+    <link rel="stylesheet" href="css/extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Segregation and non-communicable disease
+## EPID 684
+### Jon Zelner
+### University of Michigan School of Public Health
+### 2020-01-28
+
+---
+
+
+
+
+# Agenda
+
+* A cross-national comparison of segregation and low birthweight risk.
+
+--
+
+* Scaling from local to population-level metrics
+
+--
+
+* Isolating causal impacts of segregation on individual SBP using longitudinal data.
+
+---
+
+class: inverse center middle
+
+# How does segregation impact health non-communicable disease outcomes?
+
+---
+
+# What does segregation .alert[*do*]?
+
+- Williams and Collins (2001) describe segregation as a .alert[fundamental cause] of health inequalities. Why might this be?
+
+--
+
+- Segregation places individuals and populations *at risk of risk*.
+
+--
+
+- This suggests that interventions that only address *proximal* factors associated with segregation are less likely to be successful than those that target *upstream* determinants.
+
+---
+
+class: inverse center  middle
+
+# Cross-national comparison of segregation and low birthweight
+
+---
+
+# How does the impact of segregation vary by national context?
+
+1. Why did they choose Chicago and Toronto for this study?
+
+--
+
+2. How do DeMaio et all operationalize the notion of segregation in Toronto and Chicago?
+
+--
+
+3. How does the impact of residential segregation on LBW vary between Chicago and Toronto?
+
+--
+
+4. What does it mean that the Chicago models explained more of the variation in LBW outcomes than the Toronto ones?
+
+--
+
+5. What would you critique about this study and its conclusions?
+
+---
+
+# Relationships between community composition and LBW outcomes
+
+.center[
+
+![](images/demaio_bivariate.png)
+]
+---
+
+# Relationship between percent minority and LBW percentage
+
+.center[
+
+![:scale 90%](images/demaio_pct_minority.png)
+
+]
+---
+
+# Relationship between percent black and LBW percentage
+.center[
+![:scale 90%](images/demaio_pct_black.png)
+
+]
+
+---
+
+# Percent minority `\(\approx\)` Isolation?
+
+Isolation can be calculated as:
+
+$$
+\sum_{i}^{n}\left[\left(\frac{x_i}{X}\right)\left(\frac{x_i}{t_i}\right)\right]
+$$
+Where:
+
+- `\(x_i\)` = Number of minority group members in area `\(i\)`.
+
+--
+
+- `\(X\)` = Total number of minority members
+
+--
+
+- `\(t_i\)` = Total population of area `\(i\)`.
+
+---
+
+# What's missing from this picture?
+
+--
+.center[
+&lt;img src="lecture-5-segregation-non-communicable_files/figure-html/unnamed-chunk-1-1.png" height="400" /&gt;
+]
+
+---
+
+# Proportion Minority by Area
+.center[
+&lt;img src="lecture-5-segregation-non-communicable_files/figure-html/unnamed-chunk-2-1.png" height="400" /&gt;
+
+On average, each neighborhood has 18% of residents from the minority group. 
+
+]
+
+
+---
+
+# How does this relate to .alert[isolation]?
+
+
+```r
+isolation &lt;- function(x) {
+  total_a &lt;- sum(x)
+  d &lt;- sum((x/total_a)*(x/1))
+  return(d)
+}
+```
+
+- The isolation of .alert[minority] group members is 0.24.
+
+--
+
+- How do we know if this is .alert[meaningful]?
+
+--
+
+- If minority group members were uniformly distributed across neighborhoods, the minimum value of isolation would be 0.18.
+
+
+---
+
+class: inverse center middle
+
+# Does decreased exposure to segregation reduce CVD risks?
+
+---
+
+# Kershaw et al. measure the impact of individual-level segregation exposure on individual-level outcomes
+
+- Kershaw, Robinson, Gordon-Larsen, Hicken, Goff, Carnethon, Kiefe, Sidney, and Roux (2017) use data from the CARDIA study to look at the impact of residential context on .alert[systolic blood pressure].
+
+--
+
+- Longitudinal data from 2280 black participants of a cohort study taking place in 4 cities. 
+
+--
+
+- Used neighborhood-level intensity of exposure to segregation was an input to the model.
+
+--
+
+- Measured local variation in segregation using the Getis-Ord `\(G_i^*\)` statistic.
+
+--
+
+- What is .alert[novel/interesting] about their approach?
+
+---
+
+# Getis-Ord `\(G_i\)` measures local variation in .alert[clustering]
+
+- `\(G_i\)` is the predecessor to `\(G_i^*\)`. Captures the same basic idea but is a bit more intutive.
+
+--
+
+- What information relevant to cardiovascular disease might be summarized by this type of measure? 
+
+--
+
+- Measure uses information on the area surrounding a given location to estimate local intensity.
+
+---
+
+# Getis-Ord `\(G_i\)`
+
+`$$G_{i}(d)=\frac{\sum_{j}w_{ij}(d)x_j}{\sum_{j}x_j}$$`
+
+Where:
+
+- `\(d\)` is the maximum distance to consider clustering 
+- `\(w_{ij}(d)=1\)` ifplace `\(i\)` and place `\(j\)` are within `\(d\)` of each other, and 0 otherwise. (When `\(i=j\)`, `\(w_{ij}=0\)`)
+- `\(x_j\)` is the variable of interest
+
+---
+class: center
+
+# Lets us go from this...
+
+
+![:scale 90%](images/tornado_incidence.png)
+
+Tordnado incidence from Frazier, Hemingway, and Brasher (2019)
+
+---
+class: center
+
+# To this...
+
+
+![:scale 90%](images/tornado_getis_ord.png)
+
+Tordnado hot and cold spots identified in Frazier, Hemingway, and Brasher (2019)
+
+---
+
+# Long-term cohort design allows study of .alert[within-person] changes in exposure to segregation
+
+![](images/within_ind_changes.png)
+
+---
+
+# Changes in intensity of segregation associated with increases in SBP
+
+![](images/sbp_gi_kershaw.png)
+---
+
+# .alert[Moving] from high to lower-segregation context associated with *decreased*  SBP
+
+![](images/kershaw_sbp_move_effect.png)
+
+.center[
+`\(G_i^*&lt;0\)` = Low segregation, `\(0,1.96\)` = Medium, `\(&gt;1.96\)` = High Segregation
+]
+
+---
+# Next Time
+
+Relating residential segregation to .alert[infectious disease] outcomes:
+
+1. [Acevedo-Garcia (2000)](https://drive.google.com/open?id=1-HUHXc_UdKg2YNIAAqknZUeSk7YrFYZX&amp;authuser=jzelner@umich.edu&amp;usp=drive_fs)
+2. [Biello, Kershaw, Nelson, Hogben, Ickovics, and Niccolai (2012a)](https://drive.google.com/open?id=1-EfFdD-MPuo-9YBTXL5Ss4D1ld9YrKhA&amp;authuser=jzelner@umich.edu&amp;usp=drive_fs)
+3. [Niccolai, Blankenship, and Keene (2019)](https://drive.google.com/open?id=1-EC8KkaEFEJocvNhD9-Bb_896RrocIuS&amp;authuser=jzelner@umich.edu&amp;usp=drive_fs)
+
+---
+
+# References
+
+[1] D. Acevedo-Garcia. "Residential Segregation and the Epidemiology of
+Infectious Diseases". En. In: _Social Science &amp; Medicine_ 51.8 (Oct.
+2000), pp. 1143-1161. ISSN: 02779536. DOI:
+10.1016/S0277-9536(00)00016-2.
+
+[2] K. B. Biello, T. Kershaw, R. Nelson, et al. "Racial Residential
+Segregation and Rates of Gonorrhea in the United States,
+2003\textendash2007". En. In: _Am J Public Health_ 102.7 (Jul. 2012),
+pp. 1370-1377. ISSN: 0090-0036, 1541-0048. DOI:
+10.2105/AJPH.2011.300516.
+
+[3] A. E. Frazier, B. L. Hemingway, and J. P. Brasher. "Land Surface
+Heterogeneity and Tornado Occurrence: An Analysis of Tornado Alley and
+Dixie Alley". En. In: _Geomatics, Natural Hazards and Risk_ 10.1 (Jan.
+2019), pp. 1475-1492. ISSN: 1947-5705, 1947-5713. DOI:
+10.1080/19475705.2019.1583292.
+
+[4] K. N. Kershaw, W. R. Robinson, P. Gordon-Larsen, et al.
+"Association of Changes in Neighborhood-Level Racial Residential
+Segregation With Changes in Blood Pressure Among Black Adults: The
+CARDIA Study". En. In: _JAMA Intern Med_ 177.7 (Jul. 2017), pp.
+996-1002. ISSN: 2168-6106. DOI: 10.1001/jamainternmed.2017.1226.
+---
+# References
+
+[1] L. M. Niccolai, K. M. Blankenship, and D. E. Keene. "Eviction From
+Renter-Occupied Households and Rates of Sexually Transmitted
+Infections: A County-Level Ecological Analysis". En-US. In: _Sexually
+Transmitted Diseases_ 46.1 (Jan. 2019), pp. 63-68. ISSN: 0148-5717.
+DOI: 10.1097/OLQ.0000000000000904.
+
+[2] D. R. Williams and C. Collins. "Racial Residential Segregation: A
+Fundamental Cause of Racial Disparities in Health". In: _Public Health
+Reports_ 116.5 (2001), pp. 404-416. ISSN: 00333549. DOI:
+10.1016/S0033-3549(04)50068-7.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
