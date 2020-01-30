@@ -8,19 +8,21 @@ Let's start with a simple scenario in which we have city with 100000 inhabitants
 Let's start by assigning each grid cell to a neighborhood.
 
 ```{r}
-dissimilarity <- function(x) {
+dissimilarity <- function(x,n) {
   total_a <- sum(x)
-  total_b <- sum(1-x)
-  d <- 0.5*sum(abs((x/total_a) - ((1-x)/total_b)))
+  total_b <- sum(n-x)
+  d <- 0.5*sum(abs((x/total_a) - ((n-x)/total_b)))
   return(d)
 }
 
 ```
 
 ```{r}
-isolation <- function(x) {
+isolation <- function(x,n) {
+  x <- x[n > 0]
+  n <- n[n > 0]
   total_a <- sum(x)
-  d <- sum((x**2)/total_a)
+  d <- sum((x/total_a)*(x/n))
   return(d)
 }
 ```
@@ -31,20 +33,55 @@ require(ggplot2)
 require(spdep)
 
 ## Make an empty matrix
-d <- 24
-neighborhood_mat <- matrix(0, d, d)
-neighborhood_mat[1:length(neighborhood_mat)] <- runif(length(neighborhood_mat), 0.3, 0.41)
+d <- 8
+neighborhood_mat <- matrix(1, d, d)
+ncell <- length(neighborhood_mat)
 
-neighborhood_mat[,1:floor(d/2)] <- runif(length(neighborhood_mat)/2, 0.5, 0.6)
+A <- 10000
+B <- 500
+#neighborhood_mat[1:ncell] <- #rbinom(ncell, n, runif(ncell, 0.2, 0.21))
+
+neighborhood_mat[,1:floor(d/4)] <- 1.1#rbinom(ncell/2, n, runif(ncell, 0.26, 0.27))
 
 neighborhood_df <- expand.grid(x = 1:d, y = 1:d)
-neighborhood_df$group <- as.vector(neighborhood_mat[cbind(neighborhood_df$y, neighborhood_df$x)])
+cell_rates <- as.vector(neighborhood_mat[cbind(neighborhood_df$y, neighborhood_df$x)])
+neighborhood_df$b <- rmultinom(1, B, cell_rates)
+neighborhood_df$a <- rmultinom(1, A, 1/cell_rates)
+
+neighborhood_df$n <- neighborhood_df$a + neighborhood_df$b
+neighborhood_df$group <- neighborhood_df$b/neighborhood_df$n
 
 g <- ggplot(neighborhood_df, aes(x = x, y = y, fill = group)) + 
   geom_raster() + 
   theme_bw() + 
   coord_equal()
 plot(g)
+```
+
+```{r}
+
+iso_val <- isolation(neighborhood_df$b, neighborhood_df$n)
+
+## Generate random allocations to cells based on pop'n distribution
+p <- sum(neighborhood_df$b)/sum(neighborhood_df$n)
+
+## Generate allocations assuming a completely uniform distribution
+nsamp <- 5000
+rand_isolation <- rep(0, nsamp)
+for (i in 1:nsamp) {
+  random_a  <- rmultinom(1, A, rep(1, ncell))
+  random_b <- rmultinom(1, B, rep(1, ncell))
+  random_n <- random_a + random_b
+  rand_isolation[i] <- isolation(random_b, random_a+random_b)/p
+}
+
+g <- ggplot(data = data.frame(x=rand_isolation),aes(x=x)) + 
+  geom_histogram(bins = 50) + 
+  geom_vline(xintercept = iso_val/p) + 
+  #geom_vline(xintercept = p, linetype = "dashed") + 
+  theme_bw()
+plot(g)
+
 ```
 
 ```{r}
