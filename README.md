@@ -5,3 +5,4 @@
 3. [Getting comfortable with hierarchical models.](http://www.jonzelner.net/spatial-epi-course/lecture-3-intro-to-hierarchical.html)
 4. [Using hierarchical models to make sense of real world data](http://www.jonzelner.net/spatial-epi-course/lecture-4-applied-hierarchical.html)
 5. [Segregation and non-communicable disease risk](http://www.jonzelner.net/spatial-epi-course/lecture-5-segregation-non-communicable.html)
+6. [Segregation and Infectious disease](http://www.jonzelner.net/spatial-epi-course/lecture-6-segregation-infectious.html)
