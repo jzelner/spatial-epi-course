@@ -1,0 +1,102 @@
+---
+author: "Jon Zelner"
+title: "Measuring spatial clustering"
+subtitle: "EPID 684"
+institute: "University of Michigan School of Public Health"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["libs/michigan.css", "middlebury-fonts", "css/extra.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "libs/macros.js"
+---
+
+```{r setup, include=FALSE}
+require(RefManageR)
+require(knitr)
+options(htmltools.dir.version = FALSE,
+        servr.daemon = TRUE)
+
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	out.height = 400
+)
+bib <- ReadBib("~/repos/bibtex-library/jz_library.bib")
+
+cited <- function(citekey){
+ return(AutoCite(bib, citekey)) 
+}
+
+```
+
+# Agenda
+
+* A motivating .alert[example].
+
+--
+
+* Hands-on .alert[clustering] activity.
+
+--
+
+* Hierarchical vs. spatial models 
+
+---
+
+class: inverse center middle
+
+# Spatial Clustering of Non-Vaccination
+
+---
+
+# Spatial clustering of non-vaccination $\to$ Spatially clustered outbreaks
+
+![:scale 60%](images/texarkana_measles.png)
+Example from `r cited("landrigan1972a")` of differential measles risk in Texarkana TX, and Texarkana AR.
+---
+
+# Vaccine hestiancy is often spatially clustered
+
+![](images/olive_spatial_nonvax.png)
+
+Spatial clustering of non-vaccinated individuals may lead to outbreaks (Figure from `r cited("olive2018")`).
+---
+
+# We know this gives rise to spatially clustered outbreaks
+
+![:scale 70%](images/michigan_measles_outbreak.png)
+
+---
+
+# Next Time
+
+- Environmental exposures!
+
+--
+
+- Air pollution!
+
+--
+
+- Read [`r cited("jerrett2005a")`](https://drive.google.com/open?id=1-T9DzCeXFcmXpaTED8BrIgBxxm1cU1pr&authuser=jzelner@umich.edu&usp=drive_fs) and [`r cited("clark2014")`](https://drive.google.com/open?id=1-PJLPEYx6V2-ulZXHz3w-hik8fWiJcLB&authuser=jzelner@umich.edu&usp=drive_fs).
+
+
+---
+
+# References
+
+```{r, results="asis"}
+PrintBibliography(bib, start = 1, end = 4, .opts = list(style = "markdown"))
+```
+---
+# References
+
+```{r, results="asis"}
+PrintBibliography(bib, start = 5, .opts = list(style = "markdown"))
+```

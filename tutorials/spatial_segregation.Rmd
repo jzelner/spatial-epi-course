@@ -7,7 +7,7 @@ Let's start with a simple scenario in which we have city with 100000 inhabitants
 
 Let's start by assigning each grid cell to a neighborhood.
 
-```{r}
+```{r setup}
 dissimilarity <- function(x,n) {
   total_a <- sum(x)
   total_b <- sum(n-x)
@@ -15,76 +15,52 @@ dissimilarity <- function(x,n) {
   return(d)
 }
 
-```
 
-```{r}
-isolation <- function(x,n) {
-  x <- x[n > 0]
-  n <- n[n > 0]
-  total_a <- sum(x)
-  d <- sum((x/total_a)*(x/n))
-  return(d)
+half_grid <- function(d, ratio, N, p) {
+  
+  ## Sample number of unvaccinated in total population
+  
+  B <- rbinom(1, N, p)
+  
+  A <- N-B
+  
+  neighborhood_mat <- matrix(1, d, d)
+  ncell <- length(neighborhood_mat)
+  neighborhood_mat[, 1:floor(d / 2)] <- ratio
+  
+  neighborhood_df <- expand.grid(x = 1:d, y = 1:d)
+  cell_rates <-
+    as.vector(neighborhood_mat[cbind(neighborhood_df$y, neighborhood_df$x)])
+  neighborhood_df$b <- rmultinom(1, B, cell_rates)
+  neighborhood_df$a <- rmultinom(1, A, 1 / cell_rates)
+  
+  neighborhood_df$n <- neighborhood_df$a + neighborhood_df$b
+  neighborhood_df$group <- neighborhood_df$b / neighborhood_df$n
+  
+  return(neighborhood_df)
+  
 }
-```
 
-```{r}
-require(dplyr)
-require(ggplot2)
-require(spdep)
-
-## Make an empty matrix
-d <- 8
-neighborhood_mat <- matrix(1, d, d)
-ncell <- length(neighborhood_mat)
-
-A <- 10000
-B <- 500
-#neighborhood_mat[1:ncell] <- #rbinom(ncell, n, runif(ncell, 0.2, 0.21))
-
-neighborhood_mat[,1:floor(d/4)] <- 1.1#rbinom(ncell/2, n, runif(ncell, 0.26, 0.27))
-
-neighborhood_df <- expand.grid(x = 1:d, y = 1:d)
-cell_rates <- as.vector(neighborhood_mat[cbind(neighborhood_df$y, neighborhood_df$x)])
-neighborhood_df$b <- rmultinom(1, B, cell_rates)
-neighborhood_df$a <- rmultinom(1, A, 1/cell_rates)
-
-neighborhood_df$n <- neighborhood_df$a + neighborhood_df$b
-neighborhood_df$group <- neighborhood_df$b/neighborhood_df$n
-
-g <- ggplot(neighborhood_df, aes(x = x, y = y, fill = group)) + 
+grid_plot <- function(df) {
+  
+ g <- ggplot(df, aes(x = x, y = y, fill = group)) + 
   geom_raster() + 
   theme_bw() + 
-  coord_equal()
-plot(g)
-```
-
-```{r}
-
-iso_val <- isolation(neighborhood_df$b, neighborhood_df$n)
-
-## Generate random allocations to cells based on pop'n distribution
-p <- sum(neighborhood_df$b)/sum(neighborhood_df$n)
-
-## Generate allocations assuming a completely uniform distribution
-nsamp <- 5000
-rand_isolation <- rep(0, nsamp)
-for (i in 1:nsamp) {
-  random_a  <- rmultinom(1, A, rep(1, ncell))
-  random_b <- rmultinom(1, B, rep(1, ncell))
-  random_n <- random_a + random_b
-  rand_isolation[i] <- isolation(random_b, random_a+random_b)/p
+  coord_equal() +
+  guides(fill = guide_legend(title = "Proportion Unvaccinated")) 
+ 
+ return(g)
 }
 
-g <- ggplot(data = data.frame(x=rand_isolation),aes(x=x)) + 
-  geom_histogram(bins = 50) + 
-  geom_vline(xintercept = iso_val/p) + 
-  #geom_vline(xintercept = p, linetype = "dashed") + 
-  theme_bw()
-plot(g)
+proportion_hist <- function(df) {
+  g <- ggplot(df, aes(x=group)) +
+    geom_histogram(binwidth=0.005) +
+    xlab("Proportion Unvaccinated") +
+    ylab("N")
+  
+  return(g)
+}
 
-```
-
-```{r}
 ## Define a function to calculate Moran's I for an 
 ## arbitrary vector of values on a square grid
 
@@ -97,37 +73,93 @@ morans_grid <- function(d, x) {
 
 }
 
+isolation <- function(x,n) {
+  x <- x[n > 0]
+  n <- n[n > 0]
+  total_a <- sum(x)
+  d <- sum((x/total_a)*(x/n))
+  return(d)
+}
 ```
 
 
-```{r}
-morans_grid(d, neighborhood_df$group)$I
-```
+```{r makegrid}
+require(dplyr)
+require(ggplot2)
+require(spdep)
 
-```{r}
-## Randomize
+## Dimension of neighborhood grid
+d <- 8
 
-random_df <- neighborhood_df
-random_df$group <- sample(neighborhood_df$group)
+## Size of the total population
+total_pop <- 100000
+unvaccinated_proportion <- 0.05
+ratio <- 1
+## Number of vaccinated and unvaccinated individuals
 
-g <- ggplot(random_df, aes(x = x, y = y, fill =group)) + 
-  geom_raster() + 
-  theme_bw() + 
-  coord_equal()
+
+## Generate grid
+neighborhood_df <- half_grid(d, ratio, total_pop, unvaccinated_proportion)
+
+g <- grid_plot(neighborhood_df)
 plot(g)
-
 ```
 
 
+# What does this look like at the population level?
+
+```{r}
+ plot(proportion_hist(neighborhood_df))
+```
+
+## How does this translate into *isolation*?
 ```{r}
 
-## Permutation test on grid values
-nsamp <- 5000
-moran_values <- rep(0, nsamp)
-neighbors <- nb2listw(cell2nb(d,d))
-for (i in 1:nsamp) {
-  moran_values[i] <- moran(sample(neighborhood_df$group), neighbors, 1, 1)$I
+iso_val <- isolation(neighborhood_df$b, neighborhood_df$n)
+
+dissim_val <- dissimilarity(neighborhood_df$b, neighborhood_df$n)
+
+print(paste0("Isolation = ", round(iso_val,2)))
+print(paste0("Dissimilarity = ", round(dissim_val,2)))
+```
+
+## How do these change with the proportion unvaccinated?
+
+```{r}
+
+## Make a vector with a range of unvaccinated fractions from 1% to 40%
+unvax_p <- seq(from = 0.01, to = 0.4, by = 0.01)
+ratios <- seq(from = 1, to = 5, by = 0.5)
+## Empty vectors to store the estimated dissimilary and 
+## isolation values
+iso_vals <- rep(0, length(unvax_p))
+dissim_vals <- rep(0, length(unvax_p))
+moran_vals <- rep(0, length(unvax_p))
+for (i in 1:length(unvax_p)) {
+  
+  ## Generate a new grid with the specified unvaccinated fraction
+  neighborhood_tmp <- half_grid(d, 3, total_pop, unvax_p[i])
+  iso_vals[i] <- isolation(neighborhood_tmp$b, neighborhood_tmp$n)
+  dissim_vals[i] <- dissimilarity(neighborhood_tmp$b, neighborhood_tmp$n)
+  moran_vals[i] <- morans_grid(d, neighborhood_tmp$group)$I
 }
 
-hist(moran_values, breaks = 100)
 ```
+
+## Visualize relationship between unvaccinated proportion and isolation
+```{r}
+plot(unvax_p, iso_vals)
+```
+
+## Dissimilarity
+
+```{r}
+plot(unvax_p, dissim_vals)
+```
+
+## Moran's I
+
+```{r}
+plot(unvax_p, moran_vals)
+```
+
