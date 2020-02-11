@@ -1,0 +1,10 @@
+name: simulation_inference
+title:
+username:
+account: jzelner
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1774123
+bundleId: 2780803
+url: https://jzelner.shinyapps.io/simulation_inference/
+when: 1581025752.39236
