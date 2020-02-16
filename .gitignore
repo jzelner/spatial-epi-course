@@ -1,2 +1,3 @@
 readings
 .DS_Store
+.snakemake

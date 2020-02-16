@@ -4,7 +4,7 @@
     <title>What are the tools of modern spatial epidemiology?</title>
     <meta charset="utf-8" />
     <meta name="author" content="Jon Zelner" />
-    <meta name="date" content="2020-01-16" />
+    <meta name="date" content="2020-02-15" />
     <link href="libs/remark-css/middlebury-fonts.css" rel="stylesheet" />
     <link rel="stylesheet" href="libs/michigan.css" type="text/css" />
     <link rel="stylesheet" href="css/extra.css" type="text/css" />
@@ -17,7 +17,7 @@ class: center, middle, inverse, title-slide
 ## EPID 684: Theory and Applications of Spatial Epidemiology
 ### Jon Zelner
 ### University of Michigan School of Public Health
-### 2020-01-16
+### 2020-02-15
 
 ---
 
@@ -167,11 +167,10 @@ Smoothed areal suicide data from (Fontanella, Saman, Campo, Hiance-Steelesmith, 
 
 # Health in Context
 
+## "States of health or disease are the expressions of the success or failure experienced by the organism in its efforts to respond adaptively to environmental challenges." (From (Dubos, 1969))
 
-##"States of health or disease are the expressions of the success or failure experienced by the organism in its efforts to respond adaptively to environmental challenges." (From (Dubos, 1969))
 
 ---
-
 
 # What aspects of the readings is most relevant to your interests/project?
 
@@ -196,109 +195,7 @@ In pairs:
 
 ---
 
-class: inverse center middle
 
-# Notes on *notation*
-
----
-class: center middle
-
-# Why should we care about notation, anyway?
-
----
-
-# Bookkeeping
-
-We will adopt the hierarchical modeling notation used in (Gelman, 2006).
-
-### Indices let us keep track of what needs tracking:
-
-- `\(i\)` indexes *individuals*.
-
---
-
-- `\(j\)` indexes *spatial units*.
-
---
-
-- `\(t\)` indexes *time*.
-
---
-
-### Counts let us know how much of everything we're dealing with:
-
-- `\(J\)` is the number of spatial locations.
-
---
-
-- `\(n_j\)` is the number of individuals in location `\(j\)`
-
-
----
-
-# Put them together!
-
-.center[
-![](images/peas_and_carrots.jpg)
-*Counts* and *indices* go together like peas and 🥕 !
-]
-
----
-
-# Indices let us access what we need
-
-- `\(y_{ij}\)` is outcome for individual `\(i\)` in unit `\(j\)`.
-  - Where: `\(i\in\{1,\ldots,n_j\}\)` ( `\(\in\)` means "in")
-  
-  - And: `\(j\in\{1,\ldots,J\}\)`
-  
---
-
-- `\(x_{ij}\)` is a .alert[covariate] associated with individual `\(ij\)`.
-
---
-
-- `\(u_j\)` is a covariate for .alert[location] `\(j\)`
-
----
-
-# But what about data?
-
-- If our data, `\(y\)`, have a Normal distribution
-
-- With mean `\(\mu\)` = 0,
-
-- And variance `\(\sigma^2\)`,
-
-- We can write: `\(y\sim\mathcal{N}(0,\sigma^2)\)`
-
----
-
-# But I thought we were going to talk about .alert[models]?
-
-.pull-left[
-
-- If `\(y_{ij}\)` has a Normal distribution,
-
-- We can write `\(y_{ij}\sim\mathcal{N}(\mu_{ij},\sigma_{y}^2)\)`
-
-- Where `\(\mu_{ij}\)` is a function of covariates, eg:
-
-- `\(\mu_{ij}=\alpha_j+\beta x_{ij}\)`
-
-- And `\(\alpha_{j}\sim\mathcal{N}(\mu_{j},\sigma_{\alpha}^{2})\)`
-
-]
-
-.pull-right[
-
-&lt;div class="figure"&gt;
-&lt;img src="lecture-2-tools_files/figure-html/unnamed-chunk-1-1.png" alt="Normally distributed outcome" height="400" /&gt;
-&lt;p class="caption"&gt;Normally distributed outcome&lt;/p&gt;
-&lt;/div&gt;
-]
-
----
 
 # Next Time
 
@@ -333,10 +230,6 @@ Mortality in Ohio: A Spatial Epidemiological Analysis of Suicide
 Clusters and Area Level Correlates". En. In: _Preventive Medicine_ 106
 (Jan. 2018), pp. 177-184. ISSN: 00917435. DOI:
 10.1016/j.ypmed.2017.10.033.
-
-[3] A. Gelman. "Multilevel (Hierarchical) Modeling: What It Can and
-Cannot Do". En. In: _Technometrics_ 48.3 (Aug. 2006), pp. 432-435.
-ISSN: 0040-1706, 1537-2723. DOI: 10.1198/004017005000000661.
 
 
     </textarea>
